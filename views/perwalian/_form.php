@@ -17,10 +17,13 @@ require_once 'models/dadan_dosen.php';
 		<div class="box-body">
 
 			<div class="form-group">
-				<label for="inputEmail3" class="col-sm-2 control-label">Nama</label>
+				<label for="inputEmail3" class="col-sm-2 control-label">Subjek</label>
 
 				<div class="col-sm-6">
-					<input type="text" name="nama" value="<?= $value['nama']; ?>" class="form-control" id="inputEmail3" placeholder="nama">
+					<?php if(dadan_user::isMahasiswa()) { ?>
+						<input type="text" name="nama" value="Perwalian Semester <?= $_GET['semester']; ?>" class="form-control" id="inputEmail3" placeholder="nama">
+					<?php } ?>
+
 				</div>
 			</div>
 			<div class="form-group">
@@ -28,25 +31,40 @@ require_once 'models/dadan_dosen.php';
 
 				<div class="col-sm-6">
 					<?= dadan_widgets::dropdown([
-						'data' => dadan_dosen::findAll(),
+						'data' => dadan_dosen::findAllByAttributes('id = '.dadan_user::getDosenWali()),
 						'key' => 'id',
 						'value' => 'nama',
 						'name' => 'id_dosen',
-						'class' => 'form-control'
+						'defaultValue' => $value['id_dosen'],
+						'class' => 'form-control',
 						])
 					?>
-
-
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="inputEmail3" class="col-sm-2 control-label">Keterangan</label>
-
+				<label for="inputPassword3" class="col-sm-2 control-label">Mahasiswa</label>
 				<div class="col-sm-6">
-					<input type="text" name="keterangan" value="<?= $value['keterangan']; ?>" class="form-control" id="inputEmail3" placeholder="keterangan">
+					<input type="text" name="npm" value="<?= $_SESSION['id_model']; ?>" readonly="readonly" class="form-control" id="inputEmail3" placeholder="keterangan">
 				</div>
 			</div>
+
+			<div class="form-group">
+				<label for="inputPassword3" class="col-sm-2 control-label">Semester</label>
+
+				<div class="col-sm-6">
+					<?= dadan_widgets::dropdown([
+						'data' => dadan_jurusan::getListSemester(),
+						'key' => 'id',
+						'value' => 'semester',
+						'name' => 'semester',
+						'defaultValue' => $_GET['semester'],
+						'class' => 'form-control'
+						])
+					?>
+				</div>
+			</div>
+
 		</div>
 		<!-- /.box-body -->
 		<div class="box-footer">

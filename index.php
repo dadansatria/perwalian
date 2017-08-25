@@ -12,22 +12,27 @@ if(isset($_GET['model']) and isset($_GET['action']) ){
 
 	//library dadan framework :3
 
-	include('dadanframework/dadan_components.php');
-	include('dadanframework/dadan_widgets.php');
+	require_once 'dadanframework/dadan_components.php';
+	require_once 'dadanframework/dadan_widgets.php';
+	require_once 'vendors/mpdf/mpdf.php';
 
     
-
-
 	/*modelnya :3*/
-    include('models/dadan_user.php');
-    include('models/dadan_'.$model.'.php');
+    require_once 'models/dadan_user.php';
+
+    if($action == 'pdf'){
+		require_once 'views/'.$model.'/pdf.php';
+    } else{
+    	require_once 'models/dadan_'.$model.'.php';
+    }
+
     $user = new dadan_user();
 
 	/*views dan layout*/
 	if($user->isLogin()){
-		include('layouts/header.php');
-		include('views/'.$root);
-		include('layouts/footer.php');
+		require_once 'layouts/header.php';
+		require_once 'views/'.$root;
+		require_once 'layouts/footer.php';
 	} else {
 		header('Location: login.php');
 	}
@@ -36,4 +41,7 @@ if(isset($_GET['model']) and isset($_GET['action']) ){
 else{
 	header('Location: login.php');
 }
+
+
+
 ?>

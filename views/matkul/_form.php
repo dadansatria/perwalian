@@ -35,8 +35,21 @@ require_once 'models/dadan_jurusan.php';
 						'class' => 'form-control'
 						])
 					?>
+				</div>
+			</div>
 
+			<div class="form-group">
+				<label for="inputPassword3" class="col-sm-2 control-label">Semester</label>
 
+				<div class="col-sm-6">
+					<?= dadan_widgets::dropdown([
+						'data' => dadan_jurusan::getListSemester(),
+						'key' => 'id',
+						'value' => 'semester',
+						'name' => 'semester',
+						'class' => 'form-control'
+						])
+					?>
 				</div>
 			</div>
 
@@ -64,4 +77,3 @@ require_once 'models/dadan_jurusan.php';
 </div>
 <!-- /.box -->
 <!-- general form elements disabled -->
-

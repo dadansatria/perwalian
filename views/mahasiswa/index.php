@@ -1,25 +1,39 @@
+<?php if(isset($_GET['import'])){
+    dadan_mahasiswa::import();
+} 
+
+
+    if(isset($_GET['search'])){
+        $search = $_GET['search'];
+    } else{
+        $search = 'lorem';
+    }
+
+?>
+
 <h1>Daftar Mahasiswa</h1>
 <div>&nbsp;</div>
 <div class="box box-primary">
     <div class="box-header">
         <a class="btn btn-primary btn-flat" href="<?= dadan_components::getUrl('mahasiswa/create'); ?>">Tambah Mahasiswa </a>
 
-        <a class="btn btn-primary btn-flat" href="#">Cetak Foto </a>
     </div>
 <!-- /.box-header -->
     <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="myTable" class="table table-bordered table-striped">
             <thead>
             <tr>
                 <th>No</th>
+                <th>NPM</th>
                 <th>Nama</th>
                 <th>Alamat</th>
-                <th>No HP</th>
+                <th>Angkatan</th>
                 <th>Aksi</th>
             </tr>
-            <?php $i=1; foreach (dadan_mahasiswa::findAll() as $value): ?>
+            <?php $i=1; foreach (dadan_mahasiswa::findAllByAttributes("nama LIKE '%$search%'") as $value): ?>
             <tr>
                 <td><?= $i ?></td>
+                <td><?= $value['npm'] ?></td>
                 <td><?= $value['nama'] ?></td>
                 <td><?= $value['alamat'] ?></td>
                 <td><?= $value['angkatan'] ?></td>
@@ -34,5 +48,3 @@
     </div>
 <!-- /.box-body -->
 </div>
-
-

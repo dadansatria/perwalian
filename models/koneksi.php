@@ -2,6 +2,7 @@
 
 /**
 * 
+Dadann Framework :3
 */
 class koneksi
 {
@@ -12,7 +13,7 @@ class koneksi
 	{
 	    // Konfigurasi database databse
 	    $host = "localhost";
-	    $dbname = "perwalian-inten2";
+	    $dbname = "perwalian-inten3";
 	    $username = "root";
 	    $password = "";
 

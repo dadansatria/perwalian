@@ -18,8 +18,16 @@
 
 				// Proses login user
 				if($user->login($email, $password)){
+					if(dadan_user::isMahasiswa()){
+						dadan_components::redirect('mahasiswa/matkul');
+					}
+					elseif(dadan_user::isDosen()){
+						dadan_components::redirect('mahasiswa/index');
+					}
+					elseif(dadan_user::isAdmin()){
+						dadan_components::redirect('mahasiswa/index');
+					}
 
-					dadan_components::redirect('mahasiswa/index');
 				}else{
 						// Jika login gagal, ambil pesan error
 					$error = $user->getLastError();
@@ -32,9 +40,11 @@
   </div>
 <?php endif; ?>
 
+<?php include('layouts/login.php'); ?>
+
 <div class="login-box">
 	<div class="login-logo">
-		<a href="../../index2.html"><b>Admin</b>LTE</a>
+		<a href="../../index2.html">PERWALIAN <br> <b>ST - INTEN</b></a>
 	</div>
 	<!-- /.login-logo -->
 	<div class="login-box-body">
@@ -49,23 +59,11 @@
 				<input type="password" name="password" class="form-control" placeholder="Password">
 				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 			</div>
-			<div class="row">
-				<div class="col-xs-8">
-					<div class="checkbox icheck">
-						<label>
-							<input type="checkbox"> Remember Me
-						</label>
-					</div>
-				</div>
-				<!-- /.col -->
+			<div class="row"> 
 				<div class="col-xs-4">
 					<button type="submit" name="kirim">login</button>
 				</div>
-				<!-- /.col -->
 			</div>
 		</form>
-
-	<!-- /.login-box-body -->
+	</div>
 </div>
-<!-- /.login-box -->
-<?php session_start(); print_r($_SESSION);  ?>

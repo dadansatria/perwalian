@@ -4,8 +4,8 @@
 Dadann Framework :3
 */
 class dadan_components
-{
-	
+
+{	
 	function baseUrl()
 	{
 		return "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
@@ -24,16 +24,21 @@ class dadan_components
 	{
 		$model = [];
 		$url = explode('/', $url);
-		$model = $url[0];
-		$action = $url[1];
 
-		$params_glue = null;
-		if($params !==null){
-			foreach ($params as $key => $value) {
-				$params_glue .= '&'.$key.'='.$value;
+		if(isset($url[1])){
+			$model = $url[0];
+			$action = $url[1];
+			$params_glue = null;
+			if($params !==null){
+				foreach ($params as $key => $value) {
+					$params_glue .= '&'.$key.'='.$value;
+				}
 			}
+			return 'index.php?&model='.$model.'&action='.$action.$params_glue;
+		} else{
+			return $url[0].'.php';
 		}
-
-		return 'index.php?&model='.$model.'&action='.$action.$params_glue;
 	}
+
+
 }

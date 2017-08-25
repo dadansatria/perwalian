@@ -32,7 +32,6 @@ class dadan_jurusan extends koneksi
 	    } else{
 	    	print "gagal";
 	    }
-
 	}
 
 	function findAllByAttributes($criteria)
@@ -67,7 +66,7 @@ class dadan_jurusan extends koneksi
 		foreach ($entitas as $key => $value) {
 			$field .= $key.",";
 			$field_value .= "'".$value."',"; 
-		}
+		}			
 
 		//hapus koma terakhir
 		$field =  preg_replace('/'. preg_quote(',', '/') . '$/', '', $field);
@@ -117,6 +116,25 @@ class dadan_jurusan extends koneksi
 		} else{
 			dadan_components::redirect('jurusan/index');
 		}
+	}
+
+	function getListSemester()
+	{
+		$list = [
+			['id' => 1, 'semester' => 1],
+			['id' => 2, 'semester' => 2],
+			['id' => 3, 'semester' => 3],
+			['id' => 4, 'semester' => 4],
+			['id' => 5, 'semester' => 5],
+			['id' => 6, 'semester' => 6],
+			['id' => 7, 'semester' => 7],
+			['id' => 8, 'semester' => 8],
+			['id' => 9, 'semester' => 9],
+			['id' => 10, 'semester' => 10],
+			['id' => 11, 'semester' => 11],
+			['id' => 12, 'semester' => 12],
+		];
+		return $list;
 	}
 
 

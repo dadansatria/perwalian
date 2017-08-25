@@ -5,10 +5,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <div>&nbsp;</div>
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>Mahasiswa</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -30,19 +30,10 @@
       <ul class="sidebar-menu">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
+        <li><a href="<?= dadan_components::getUrl('mahasiswa/matkul'); ?>"><i class="fa fa-link"></i> <span>Mata Kuliah</span></a></li>
+        <li><a href="<?= dadan_components::getUrl('jurusan/index'); ?>"><i class="fa fa-link"></i> <span>Profil Mahasiswa</span></a></li>
+        <li class="header">SISTEM</li>
+        <li><a href="<?= dadan_components::getUrl('logout'); ?>"><i class="fa fa-link"></i> <span>Logout</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

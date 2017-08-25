@@ -3,6 +3,7 @@
 require_once 'koneksi.php';
 require_once 'dadan_dosen.php';
 
+
 /**
 
 Dadan Satria Nugraha
@@ -12,6 +13,12 @@ Dadann Framework :3
 
 class dadan_perwalian extends koneksi
 {
+
+	
+	const DIAMBIL = 3;
+	const DITERIMA = 2;
+	const DINILAI = 1;
+	const DITOLAK = 4;
 
 	function findAll($criteria=null)
 	{
@@ -122,11 +129,36 @@ class dadan_perwalian extends koneksi
 
 	function relasi($tabel,$attribut,$id)
 	{
-		$model = $tabel::find('id = '.$id);
+		if($tabel == 'dadan_mahasiswa'){
+			$properti = 'npm';
+		} else{
+			$properti = 'id';
+		}
+		$model = $tabel::find($properti.' = '.$id);
 		if($model !==null){
 			return $model[$attribut];
 		}
 
+	}
+
+	public function getUrlPerwalian($semester)
+	{
+		$npm = $_SESSION['id_model'];
+		$perwalian = self::find("semester='$semester' AND npm=$npm");
+		if($perwalian['id'] !==null){
+			return dadan_components::getUrl('perwalian/view',['id'=>$perwalian['id']]);
+		} else{
+			return dadan_components::getUrl('perwalian/create',['semester' => $semester]);
+		}
+	}
+
+	public function ubahStatus($id_perwalian, $status)
+	{
+		$db = parent::getKoneksi();
+
+		$query = $db->prepare("UPDATE perwalian SET status = $status WHERE id=:id");
+		$query->bindParam(':id',$id_perwalian);
+		return $query->execute();
 	}
 
 

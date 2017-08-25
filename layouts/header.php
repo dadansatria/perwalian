@@ -13,23 +13,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="vendors/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="vendors/css/awesome/font-awesome.min.css">
+  <link rel="stylesheet" href="vendors/dist/css/AdminLTE.css">
+  <link rel="stylesheet" href="vendors/dist/css/skins/skin-blue.min.css">
+  
+
+<link rel="stylesheet" href="vendors/datatable2/css/jquery.dataTables.css">
+  <script src="vendors/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
   <!-- Ionicons -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"> -->
-  <!-- Theme style -->
-  <link rel="stylesheet" href="vendors/dist/css/AdminLTE.css">
-  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect.
-  -->
-  <link rel="stylesheet" href="vendors/dist/css/skins/skin-blue.min.css">
+  
+  <!-- Theme =========================================  
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+  
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -60,9 +57,9 @@ desired effect
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>ST</b>I</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>ST</b> INTEN</span>
     </a>
 
     <!-- Header Navbar -->
@@ -224,7 +221,16 @@ desired effect
   </header>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
-  <?= include('_admin.php'); ?>
+  <?php 
+    if(dadan_user::isAdmin()){
+      require_once '_admin.php' ;
+    } elseif(dadan_user::isMahasiswa()){
+      require_once '_mahasiswa.php' ;
+    } elseif(dadan_user::isDosen()){
+      require_once '_dosen.php' ;
+    }
+  ?>
+
   </aside>
 
   <!-- Content Wrapper. Contains page content -->

@@ -1,3 +1,8 @@
+<?php if(isset($_GET['import'])){
+    dadan_matkul::import();
+} ?>
+
+
 <h1>Daftar matkul</h1>
 <div>&nbsp;</div>
 <div class="box box-primary">
@@ -12,6 +17,7 @@
                 <th>No</th>
                 <th>Kode</th>
                 <th>Jurusan</th>
+                <th>Semester</th>
                 <th>Nama Mata Kuliah</th>
                 <th>Aksi</th>
             </tr>
@@ -20,6 +26,7 @@
                 <td><?= $i ?></td>
                 <td><?= $value['kode'] ?></td>
                 <td><?= dadan_matkul::relasi('dadan_jurusan','nama',$value['id_jurusan']); ?></td>
+                <td><?= $value['semester'] ?></td>
                 <td><?= $value['nama'] ?></td>
                 <td>
                     <a href="<?= dadan_components::getUrl('matkul/view',['id'=>$value['id']]); ?>">View</a>

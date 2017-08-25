@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <!-- search form (Optional) -->
+      <!-- search form (Optihonal) -->
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -35,6 +35,8 @@
         <li><a href="<?= dadan_components::getUrl('matkul/index'); ?>"><i class="fa fa-link"></i> <span>Mata Kuliah</span></a></li>
         <li><a href="<?= dadan_components::getUrl('jurusan/index'); ?>"><i class="fa fa-link"></i> <span>Daftar Jurusan</span></a></li>
         <li><a href="<?= dadan_components::getUrl('perwalian/index'); ?>"><i class="fa fa-link"></i> <span>Daftar Perwalian</span></a></li>
+        <li class="header">SISTEM</li>
+        <li><a href="<?= dadan_components::getUrl('logout'); ?>"><i class="fa fa-link"></i> <span>Logout</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

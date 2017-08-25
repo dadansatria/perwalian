@@ -10,13 +10,16 @@
             <thead>
             <tr>
                 <th>No</th>
-                <th>Nama</th>
+                <th>Judul</th>
+                <th>Semester</th>
                 <th>Dosen</th>
                 <th>Aksi</th>
             </tr>
             <?php $i=1; foreach (dadan_perwalian::findAll() as $value): ?>
             <tr>
                 <td><?= $i ?></td>
+                <td><?= $value['nama']; ?></td>
+                <td><?= $value['semester'] ?></td>
                 <td><?= dadan_perwalian::relasi('dadan_dosen','nama',$value['id_dosen']); ?></td>
                 <td><?= $value['keterangan'] ?></td>
                 <td>
